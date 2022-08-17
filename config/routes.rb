@@ -1,5 +1,15 @@
 Rails.application.routes.draw do
   root 'homes#index'
   devise_for :users
-  # For details on the DSL available within this file, see http://guides.rubyonrails.org/routing.html
+
+  resources :decks, only: [:new, :create]
+
+  namespace :api do
+    namespace :v1 do
+      resources :decks, only: [:index, :show]
+    end
+  end
+
+  get "/decks",     to: "homes#index"
+  get "/decks/:id", to: "homes#index"
 end
