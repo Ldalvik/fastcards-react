@@ -12,7 +12,7 @@ const DeckIndex = (props) => {
         throw error;
       }
       const decksData = await response.json();
-      setDecks(decksData)
+      setDecks(decksData);
     } catch (error) {
       console.error(`Error in fetch: ${error.message}`);
     }
@@ -22,18 +22,22 @@ const DeckIndex = (props) => {
     getDecks();
   }, []);
 
+
   const decksList = decks.map((deck) => {
     return (
       <div key={deck.id} class="cell">
-        <div class="card">
-          <div class="card-divider">
-            <h4>{deck.name}</h4>
+        <a href={`/deck/${deck.id}`}>
+          <div class="card fastcard clickable">
+            <div class="card-divider">
+              <h4>{deck.name}</h4>
+            </div>
+            <div class="card-section">
+              <h5>{deck.category}</h5>
+              <small>{deck.difficulty}</small><br/><br/>
+              <p>{deck.description}</p>
+            </div>
           </div>
-          <div class="card-section">
-            <h4>{deck.category}</h4>
-            <p>{deck.description}</p>
-          </div>
-        </div>
+        </a>
       </div>
     );
   });

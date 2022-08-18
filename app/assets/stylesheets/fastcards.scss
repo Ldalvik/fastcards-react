@@ -1,0 +1,15 @@
+.fastcard {
+    height:400px;
+    width:300px;
+}
+
+a:hover div.clickable {
+    background: rgb(239, 239, 239)
+}
+
+.clickable {
+    -moz-transition: all .2s ease-in;
+    -o-transition: all .2s ease-in;
+    -webkit-transition: all .2s ease-in;
+    transition: all .2s ease-in;
+}
