@@ -348,10 +348,10 @@ $callout-link-tint: 30%;
 
 $card-background: $white;
 $card-font-color: $body-font-color;
-$card-divider-background: $light-gray;
-$card-border: 1px solid $light-gray;
-$card-shadow: none;
-$card-border-radius: $global-radius;
+$card-divider-background: #f9f9f9;
+$card-border: 1px solid #f0f0f0;
+$card-shadow: 0 4px 8px 0 rgba(0,0,0,0.2);
+$card-border-radius: 8px;
 $card-padding: $global-padding;
 $card-margin-bottom: $global-margin;
 
