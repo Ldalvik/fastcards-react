@@ -3,7 +3,7 @@ import { BrowserRouter, Switch, Route } from "react-router-dom";
 import HomePage from "./fastcards/HomePage"
 import DeckIndex from "./fastcards/DeckIndex"
 
-export const App = (props) => {  
+export const App = () => {  
     return (
       <BrowserRouter>
         <Switch>
