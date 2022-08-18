@@ -1,26 +1,39 @@
-<h2>Log in</h2>
-
+<div class="grid-x grid-padding-x grid-padding-y">
+<div class="cell large-12">
+<h2 class="text-center">Log In</h2>
 <%= form_for(resource, as: resource_name, url: session_path(resource_name)) do |f| %>
-  <div class="field">
-    <%= f.label :email %><br />
-    <%= f.email_field :email, autofocus: true, autocomplete: "email" %>
+  <%= render "devise/shared/error_messages", resource: resource %>
+  
+  <div class="grid-x grid-padding-x align-center">
+    <div class="cell small-6">
+      <%= f.label :email %><br />
+      <%= f.email_field :email, autofocus: true, autocomplete: "email" %>
+  </div>
   </div>
 
-  <div class="field">
-    <%= f.label :password %><br />
-    <%= f.password_field :password, autocomplete: "current-password" %>
+  <div class="grid-x grid-padding-x align-center">
+    <div class="cell small-6">
+      <%= f.label :password %><br />
+      <%= f.password_field :password, autocomplete: "current-password" %>
+    </div>
   </div>
-
+  
   <% if devise_mapping.rememberable? %>
-    <div class="field">
+    <div class="grid-x grid-padding-x align-center">
+      <div class="cell small-6">
       <%= f.check_box :remember_me %>
       <%= f.label :remember_me %>
+      </div>
     </div>
   <% end %>
 
-  <div class="actions">
-    <%= f.submit "Log in" %>
+  <div class="grid-x grid-padding-x align-center">
+    <div class="cell small-6">
+      <%= f.submit "Log In", class: "button" %>
+        <%= render "devise/shared/links" %>
+    </div>
   </div>
 <% end %>
 
-<%= render "devise/shared/links" %>
+</div>
+</div>
