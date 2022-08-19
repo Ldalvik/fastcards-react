@@ -44,7 +44,7 @@ const DeckIndex = (props) => {
 
   return (
     <div>
-      <h1 className="text-center">Decks</h1>
+      <h1 className="text-center header-padding">Decks</h1>
       <div className="grid-container">
         <div className="grid-x grid-margin-x grid-margin-y small-up-2 medium-up-3">
           {decksList}
