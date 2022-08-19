@@ -6,6 +6,6 @@ class Api::V1::DecksController < ApplicationController
     end
 
     def show
-      render json: Deck.find(params[:id])
+      render json: Deck.find(params[:id]), serializer: DeckShowSerializer
     end
 end
