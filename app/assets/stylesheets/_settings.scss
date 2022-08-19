@@ -74,7 +74,10 @@ $foundation-palette: (
   success: #3adb76,
   warning: #ffae00,
   alert: #cc4b37,
+  
+  bg-white-text: #ffffff,
 );
+
 $light-gray: #e6e6e6;
 $medium-gray: #cacaca;
 $dark-gray: #8a8a8a;
@@ -348,7 +351,7 @@ $callout-link-tint: 30%;
 
 $card-background: $white;
 $card-font-color: $body-font-color;
-$card-divider-background: #f9f9f9;
+$card-divider-background: rgba(59, 135, 217, .8);
 $card-border: 1px solid #f0f0f0;
 $card-shadow: 0 4px 8px 0 rgba(0,0,0,0.2);
 $card-border-radius: 8px;
@@ -871,8 +874,8 @@ $tooltip-radius: $global-radius;
 // 55. Top Bar
 // -----------
 
-$topbar-padding: 0.5rem;
-$topbar-background: $light-gray;
+$topbar-padding: 1.0rem;
+$topbar-background: rgba(59, 135, 217, 1.0);
 $topbar-submenu-background: $topbar-background;
 $topbar-title-spacing: 0.5rem 1rem 0.5rem 0;
 $topbar-input-width: 200px;

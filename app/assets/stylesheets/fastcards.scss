@@ -3,8 +3,8 @@
     width:300px;
 }
 
-a:hover div.clickable {
-    background: rgb(239, 239, 239);
+a:hover .clickable {
+    background: rgba(138, 191, 255, 0.457);
     border-radius: 30px;
 }
 
@@ -13,4 +13,19 @@ a:hover div.clickable {
     -o-transition: all .2s ease-in;
     -webkit-transition: all .2s ease-in;
     transition: all .2s ease-in;
+}
+
+.header-padding {
+    padding-top: 10px;
+    padding-bottom: 20px;
+}
+
+.header-text {
+    font-family: Verdana, Geneva, Tahoma, sans-serif;
+    font-style: italic;
+    font-size: large;
+}
+
+.topbar-shadow {
+    box-shadow: 0 4px 4px -2px rgba(0,0,0,.3);
 }
