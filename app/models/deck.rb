@@ -4,4 +4,5 @@ class Deck < ApplicationRecord
     validates :description, presence: true
     validates :difficulty,  presence: true
     
+    has_many :cards
 end

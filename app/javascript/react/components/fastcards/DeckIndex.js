@@ -1,33 +1,31 @@
-import React, { useState, useEffect } from "react";
+import React, { useState, useEffect } from "react"
 
 const DeckIndex = (props) => {
-  const [decks, setDecks] = useState([]);
+  const [decks, setDecks] = useState([])
 
   const getDecks = async () => {
     try {
-      const response = await fetch("/api/v1/decks");
+      const response = await fetch("/api/v1/decks")
       if (!response.ok) {
-        const errorMessage = `${response.status} (${response.statusText})`;
-        const error = new Error(errorMessage);
-        throw error;
+        throw new Error(`${response.status} (${response.statusText})`)
       }
-      const decksData = await response.json();
-      setDecks(decksData);
+      const decksData = await response.json()
+      setDecks(decksData)
     } catch (error) {
-      console.error(`Error in fetch: ${error.message}`);
+      console.error(`Error in fetch: ${error.message}`)
     }
-  };
+  }
 
   useEffect(() => {
-    getDecks();
-  }, []);
+    getDecks()
+  }, [])
 
 
   const decksList = decks.map((deck) => {
     return (
       <div key={deck.id} class="cell">
-        <a href={`/deck/${deck.id}`}>
-          <div class="card fastcard clickable">
+        <a href={`/decks/${deck.id}`}>
+          <div class="card fastcard-deck clickable-deck">
             <div class="card-divider">
               <h4>{deck.name}</h4>
             </div>
@@ -51,7 +49,7 @@ const DeckIndex = (props) => {
         </div>
       </div>
     </div>
-  );
-};
+  )
+}
 
-export default DeckIndex;
+export default DeckIndex

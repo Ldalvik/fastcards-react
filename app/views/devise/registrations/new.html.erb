@@ -11,12 +11,7 @@
     </div>
   </div>
 
-<div class="grid-x grid-padding-x align-center">
-    <div class="cell small-6">
-      <%= f.label :username %>
-      <%= f.text_field :username %>
-    </div>
-  </div>
+
 
   <div class="grid-x grid-padding-x align-center">
     <div class="cell small-3">
@@ -38,6 +33,11 @@
   <div class="grid-x grid-padding-x align-center">
     <div class="cell small-6">
       <%= f.submit "Sign up", class: "button" %>
+    </div>
+  </div>
+  
+  <div class="grid-x grid-padding-x align-center">
+    <div class="cell small-6">
       <%= render "devise/shared/links" %>
     </div>
   </div>

@@ -1,14 +1,31 @@
-.fastcard {
+.fastcard-deck {
     height:400px;
     width:300px;
 }
 
-a:hover .clickable {
+a:hover .clickable-deck {
     background: rgba(138, 191, 255, 0.457);
     border-radius: 30px;
 }
 
-.clickable {
+.clickable-deck {
+    -moz-transition: all .2s ease-in;
+    -o-transition: all .2s ease-in;
+    -webkit-transition: all .2s ease-in;
+    transition: all .2s ease-in;
+}
+
+.fastcard-card {
+    height:275px;
+    width:200px;
+}
+
+a:hover .clickable-card {
+    background: rgba(138, 191, 255, 0.357);
+    border-radius: 20px;
+}
+
+.clickable-card {
     -moz-transition: all .2s ease-in;
     -o-transition: all .2s ease-in;
     -webkit-transition: all .2s ease-in;
@@ -29,3 +46,4 @@ a:hover .clickable {
 .topbar-shadow {
     box-shadow: 0 4px 4px -2px rgba(0,0,0,.3);
 }
+

@@ -6,7 +6,9 @@ Rails.application.routes.draw do
 
   namespace :api do
     namespace :v1 do
-      resources :decks, only: [:index, :show]
+      resources :decks, only: [:index, :show] do 
+        resources :cards, only: [:create, :new]
+      end
     end
   end
 
