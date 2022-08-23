@@ -8,8 +8,7 @@ class DecksController < ApplicationController
       @deck = Deck.create(deck_params)
       if @deck.save
           flash[:msg] = "Deck added successfully"
-          # redirect_to "/deck/#{@deck.id}"
-          redirect_to "/decks"
+          redirect_to "/decks/#{@deck.id}"
       else
           flash.now[:msg] = @deck.errors.full_messages.to_sentence
           render :"fastcards/new"
