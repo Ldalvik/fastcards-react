@@ -1,47 +1,40 @@
 <div class="grid-x grid-padding-x grid-padding-y">
-<div class="cell large-12">
-<h2 class="text-center">Sign Up</h2>
-<%= form_for(resource, as: resource_name, url: registration_path(resource_name)) do |f| %>
-  <%= render "devise/shared/error_messages", resource: resource %>
-  
-  <div class="grid-x grid-padding-x align-center">
-    <div class="cell small-6">
-      <%= f.label :email %>
-      <%= f.email_field :email, autofocus: true, autocomplete: "email" %>
-    </div>
+  <div class="cell large-12">
+    <h2 class="text-center">Sign Up</h2>
+    <%= form_for(resource, as: resource_name, url: registration_path(resource_name)) do |f| %>
+      <%= render "devise/shared/error_messages", resource: resource %>
+      <div class="grid-x grid-padding-x align-center">
+        <div class="cell small-6">
+          <%= f.label :email %>
+          <%= f.email_field :email, autofocus: true, autocomplete: "email" %>
+        </div>
+      </div>
+      <div class="grid-x grid-padding-x align-center">
+        <div class="cell small-3">
+          <%= f.label :password %>
+          <% if @minimum_password_length %>
+            <em>(<%= @minimum_password_length %> characters minimum)</em>
+          <% end %>
+          <%= f.password_field :password, autocomplete: "new-password" %>
+        </div>
+        <div class="cell small-3">
+          <%= f.label :password %>
+          <% if @minimum_password_length %>
+            <em>(<%= @minimum_password_length %> characters minimum)</em>
+          <% end %><br />
+          <%= f.password_field :password, autocomplete: "new-password" %>
+        </div>
+      </div>
+      <div class="grid-x grid-padding-x align-center">
+        <div class="cell small-6">
+          <%= f.submit "Sign up", class: "button" %>
+        </div>
+      </div>
+      <div class="grid-x grid-padding-x align-center">
+        <div class="cell small-6">
+          <%= render "devise/shared/links" %>
+        </div>
+      </div>
+    <% end %>
   </div>
-
-
-
-  <div class="grid-x grid-padding-x align-center">
-    <div class="cell small-3">
-      <%= f.label :password %>
-      <% if @minimum_password_length %>
-        <em>(<%= @minimum_password_length %> characters minimum)</em>
-      <% end %>
-      <%= f.password_field :password, autocomplete: "new-password" %>
-    </div>
-    <div class="cell small-3">
-      <%= f.label :password %>
-      <% if @minimum_password_length %>
-        <em>(<%= @minimum_password_length %> characters minimum)</em>
-      <% end %><br />
-      <%= f.password_field :password, autocomplete: "new-password" %>
-    </div>
-  </div>
-
-  <div class="grid-x grid-padding-x align-center">
-    <div class="cell small-6">
-      <%= f.submit "Sign up", class: "button" %>
-    </div>
-  </div>
-  
-  <div class="grid-x grid-padding-x align-center">
-    <div class="cell small-6">
-      <%= render "devise/shared/links" %>
-    </div>
-  </div>
-<% end %>
-
-</div>
 </div>

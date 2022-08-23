@@ -1,33 +1,32 @@
-<h2 class="text-center">New Deck Form</h2>
+<h2 class="text-center header-padding-top">New Deck Form</h2>
 
 <%= form_for(@deck) do |f| %>
   <div class="grid-x grid-padding-x align-center">
-    <div class="cell small-10">
+    <div class="cell small-8">
       <%= f.label :name, "Name" %>
       <%= f.text_field :name %>
     </div>
   </div>
-
   <div class="grid-x grid-padding-x align-center">
-    <div class="cell small-10">
+    <div class="cell small-4">
       <%= f.label :category, "Category" %>
       <%= f.text_field :category %>
     </div>
-  </div>
-
-  <div class="grid-x grid-padding-x align-center">
-    <div class="cell small-5">
-        <%= f.label :description, "Description" %>
-        <%= f.text_area :description %>
-     </div>
-  </div>
-
-  <div class="grid-x grid-padding-x align-center">
-    <div class="cell small-5">
+    <div class="cell small-4">
       <%= f.label :difficulty, "Difficulty"  %>
       <%= f.text_field :difficulty %>
-
-      <%= f.submit "Add Deck", :class => "button" %>
+    </div>
+  </div>
+  </div>
+  <div class="grid-x grid-padding-x align-center">
+    <div class="cell small-8">
+      <%= f.label :description, "Description" %>
+      <%= f.text_area :description, :rows => 10 %>
+    </div>
+  </div>
+  <div class="grid-x grid-padding-x align-center">
+    <div class="cell small-8">
+      <%= f.submit "Create", class: "button" %>
     </div>
   </div>
 <% end %>

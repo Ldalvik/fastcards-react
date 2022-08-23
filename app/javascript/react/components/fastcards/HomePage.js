@@ -9,7 +9,7 @@ const HomePage = () => {
           Create, view, and practice flashcards made by yourself or others. Study alone, or make it a competition and go against friends, family, or classmates.
         </p>
         <a class="button expanded" href="/decks">View Decks</a>
-        <a class="button expanded" href="/new">Create Decks</a>
+        <a class="button expanded" href="/decks/new">Create Decks</a>
       </div>
     </div>
   )
