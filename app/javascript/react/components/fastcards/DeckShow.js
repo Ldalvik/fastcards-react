@@ -28,23 +28,23 @@ const DeckShow = (props) => {
   if (deck.hasOwnProperty("cards")) {
     cardsList = deck.cards.map((card) => {
       return (
-        <div key={card.id} class="cell">
-        <a onClick={onCardClicked}>
-          <div class="card fastcard-card clickable-card">
-            <div class="card-section">
-              <small>Difficulty: {card.difficulty}</small><br/><br/>
-              <a data-dropdown="drop2" aria-controls="drop2" aria-expanded="false">
-                Click here for a clue
-              </a>
-              <div id="drop2" data-dropdown-content class="f-dropdown content" aria-hidden="true" tabindex="-1">
-                <p>{card.clue}</p>
+        <div key={card.id} className="cell">
+          <a onClick={onCardClicked}>
+            <div className="card fastcard-card clickable-card">
+              <div className="card-section">
+                <small>Difficulty: {card.difficulty}</small><br/><br/>
+                {/* <a data-dropdown="drop2" aria-controls="drop2" aria-expanded="false">
+                  Click here for a clue
+                </a> */}
+                <div id="drop2" data-dropdown-content className="f-dropdown content" aria-hidden="true" tabIndex="-1">
+                  <p>{card.clue}</p>
+                </div>
+                <p>Q: {card.question}</p>
+                <p>A: Click the card to see the answer...</p>
               </div>
-              <p>Q: {card.question}</p>
-              <p>A: Click the card to see the answer...</p>
             </div>
-          </div>
-        </a>
-      </div>
+          </a>
+        </div>
       )
     })
   }
@@ -57,11 +57,24 @@ const DeckShow = (props) => {
           <p>{deck.description}</p>
           <p>{deck.category}</p>
           <p>{deck.difficulty}</p>
+
         </div>
       </div>
       <div className="grid-container">
         <div className="grid-x grid-margin-x grid-margin-y small-up-4 medium-up-5">
-          {cardsList}
+      
+        <div className="cell">
+          <a data-dropdown="drop2" aria-controls="drop2" aria-expanded="false">
+
+          <div className="card fastcard-card clickable-card">
+            <div className="card-section">
+              <p>Click to add a new card...</p>
+            </div>
+          </div>
+          </a>
+        </div>
+
+        {cardsList}
         </div>
       </div>
     </div>
