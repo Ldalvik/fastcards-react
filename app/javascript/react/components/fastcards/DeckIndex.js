@@ -25,7 +25,7 @@ const DeckIndex = (props) => {
     return (
       <div key={deck.id} class="cell">
         <a href={`/decks/${deck.id}`}>
-          <div class="card fastcard clickable">
+          <div class="card fastcard-deck clickable-deck">
             <div class="card-divider">
               <h4>{deck.name}</h4>
             </div>

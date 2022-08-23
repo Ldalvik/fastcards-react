@@ -20,15 +20,31 @@ const DeckShow = (props) => {
     getDeck()
   }, [])
 
+  const onCardClicked = (e) => {
+
+  }
+
   let cardsList
   if (deck.hasOwnProperty("cards")) {
     cardsList = deck.cards.map((card) => {
       return (
-        <li>
-          <p>
-            {card.question}, {card.answer}
-          </p>
-        </li>
+        <div key={card.id} class="cell">
+        <a onClick={onCardClicked}>
+          <div class="card fastcard-card clickable-card">
+            <div class="card-section">
+              <small>Difficulty: {card.difficulty}</small><br/><br/>
+              <a data-dropdown="drop2" aria-controls="drop2" aria-expanded="false">
+                Click here for a clue
+              </a>
+              <div id="drop2" data-dropdown-content class="f-dropdown content" aria-hidden="true" tabindex="-1">
+                <p>{card.clue}</p>
+              </div>
+              <p>Q: {card.question}</p>
+              <p>A: Click the card to see the answer...</p>
+            </div>
+          </div>
+        </a>
+      </div>
       )
     })
   }
@@ -41,7 +57,11 @@ const DeckShow = (props) => {
           <p>{deck.description}</p>
           <p>{deck.category}</p>
           <p>{deck.difficulty}</p>
-          <ul>{cardsList}</ul>
+        </div>
+      </div>
+      <div className="grid-container">
+        <div className="grid-x grid-margin-x grid-margin-y small-up-4 medium-up-5">
+          {cardsList}
         </div>
       </div>
     </div>
