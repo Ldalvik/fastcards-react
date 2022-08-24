@@ -304,7 +304,7 @@ $button-background: $primary-color;
 $button-background-hover: scale-color($button-background, $lightness: -15%);
 $button-color: $white;
 $button-color-alt: $black;
-$button-radius: $global-radius;
+$button-radius: 8px;
 $button-border: 1px solid transparent;
 $button-hollow-border-width: 1px;
 $button-sizes: (
@@ -354,7 +354,7 @@ $card-font-color: $body-font-color;
 $card-divider-background: rgba(59, 135, 217, .8);
 $card-border: 1px solid #f0f0f0;
 $card-shadow: 0 4px 8px 0 rgba(0,0,0,0.2);
-$card-border-radius: 8px;
+$card-border-radius: 11px;
 $card-padding: $global-padding;
 $card-margin-bottom: $global-margin;
 
@@ -470,7 +470,7 @@ $input-shadow-focus: 0 0 5px $medium-gray;
 $input-cursor-disabled: not-allowed;
 $input-transition: box-shadow 0.5s, border-color 0.25s ease-in-out;
 $input-number-spinners: true;
-$input-radius: $global-radius;
+$input-radius: 6px;
 $form-button-radius: $global-radius;
 
 // 21. Label

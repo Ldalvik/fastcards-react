@@ -1,52 +1,76 @@
-import React, { useState, useEffect } from "react"
+import React, { useState, useEffect } from "react";
+import CreateCardTile from "./CreateCardTile";
 
 const DeckShow = (props) => {
-  const [deck, setDeck] = useState([])
+  const [deck, setDeck] = useState([]);
+  const [cards, setCards] = useState([]);
 
   const getDeck = async () => {
     try {
-      const response = await fetch(`/api/v1/decks/${props.match.params.id}`)
+      const response = await fetch(`/api/v1/decks/${props.match.params.id}`);
       if (!response.ok) {
-        throw new Error(`${response.status} (${response.statusText})`)
+        throw new Error(`${response.status} (${response.statusText})`);
       }
-      const deckData = await response.json()
-      setDeck(deckData)
+      const deckData = await response.json();
+      setDeck(deckData);
+      setCards(deckData.cards);
     } catch (error) {
-      console.error(`Error in fetch: ${error.message}`)
+      console.error(`Error in fetch: ${error.message}`);
     }
-  }
+  };
 
   useEffect(() => {
-    getDeck()
-  }, [])
+    getDeck();
+  }, []);
+
+  const submitCard = async (event, formPayload) => {
+    event.preventDefault();
+      try {
+        let deck_id = props.match.params.id;
+        const response = await fetch(`/api/v1/decks/${deck_id}/cards`, {
+          credentials: "same-origin",
+          method: "POST",
+          headers: {
+            Accept: "application/json",
+            "Content-Type": "application/json",
+          },
+          body: JSON.stringify(formPayload),
+        });
+        if (!response.ok) {
+          throw new Error(`${response.status} (${response.statusText})`);
+        } else {
+          const cardData = await response.json();
+          setCards([cardData, ...cards])
+        }
+      } catch (error) {
+        console.log("error in fetch:", error);
+      }
+    }
 
   const onCardClicked = (e) => {
+    setNewCardForm();
+  };
 
-  }
-
-  let cardsList
+  let cardsList;
   if (deck.hasOwnProperty("cards")) {
-    cardsList = deck.cards.map((card) => {
+    cardsList = cards.map((card) => {
       return (
         <div key={card.id} className="cell">
           <a onClick={onCardClicked}>
             <div className="card fastcard-card clickable-card">
               <div className="card-section">
-                <small>Difficulty: {card.difficulty}</small><br/><br/>
-                {/* <a data-dropdown="drop2" aria-controls="drop2" aria-expanded="false">
-                  Click here for a clue
-                </a> */}
-                <div id="drop2" data-dropdown-content className="f-dropdown content" aria-hidden="true" tabIndex="-1">
-                  <p>{card.clue}</p>
-                </div>
+                <small>Difficulty: {card.difficulty}</small>
+                <br />
+                <br />
+                <p>{card.clue}</p>
                 <p>Q: {card.question}</p>
                 <p>A: Click the card to see the answer...</p>
               </div>
             </div>
           </a>
         </div>
-      )
-    })
+      );
+    });
   }
 
   return (
@@ -57,28 +81,16 @@ const DeckShow = (props) => {
           <p>{deck.description}</p>
           <p>{deck.category}</p>
           <p>{deck.difficulty}</p>
-
         </div>
       </div>
       <div className="grid-container">
         <div className="grid-x grid-margin-x grid-margin-y small-up-4 medium-up-5">
-      
-        <div className="cell">
-          <a data-dropdown="drop2" aria-controls="drop2" aria-expanded="false">
-
-          <div className="card fastcard-card clickable-card">
-            <div className="card-section">
-              <p>Click to add a new card...</p>
-            </div>
-          </div>
-          </a>
-        </div>
-
-        {cardsList}
+          <CreateCardTile submitCard={submitCard} />
+          {cardsList}
         </div>
       </div>
     </div>
-  )
-}
+  );
+};
 
-export default DeckShow
+export default DeckShow;
