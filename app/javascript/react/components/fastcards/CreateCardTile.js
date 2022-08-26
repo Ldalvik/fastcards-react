@@ -50,19 +50,6 @@ const CreateCardTile = ({ submitCard }) => {
                   <div className="large-12 columns">
                     <label>
                       <input
-                        name="clue"
-                        type="text"
-                        onChange={handleChange}
-                        value={currentCard.clue}
-                        placeholder="Clue here..."
-                      />
-                    </label>
-                  </div>
-                </div>
-                <div className="row">
-                  <div className="large-12 columns">
-                    <label>
-                      <input
                         name="question"
                         type="text"
                         onChange={handleChange}
