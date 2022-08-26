@@ -23,16 +23,16 @@ const DeckIndex = (props) => {
 
   const decksList = decks.map((deck) => {
     return (
-      <div key={deck.id} class="cell">
+      <div key={deck.id} className="cell">
         <Link to = {{
           pathname: `/decks/${deck.id}`,
           state: {decks}
        }}>
-          <div class="card fastcard-deck clickable-deck">
-            <div class="card-divider">
+          <div className="card fastcard-deck clickable-deck">
+            <div className="card-divider">
               <h4>{deck.name}</h4>
             </div>
-            <div class="card-section">
+            <div className="card-section">
               <h5>{deck.category}</h5>
               <small>{deck.difficulty}</small><br/><br/>
               <p>{deck.description}</p>

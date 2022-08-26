@@ -4,6 +4,7 @@ const QuizPage = (props) => {
   const deckId = props.match.params.id;
   const [gameStarted, setGameStarted] = useState(false);
   const [cards, setCards] = useState([]);
+  const [submitButtonDisabled, setSubmitButtonDisabled] = useState(true);
 
   const [score, setScore] = useState({
     right: 0,
@@ -28,12 +29,16 @@ const QuizPage = (props) => {
     }
   };
 
-  console.log(props.location.search.substring(10));
   useEffect(() => {
     getDeck();
   }, []);
 
   const handleChange = (event) => {
+    if (event.currentTarget.value === null) {
+      setSubmitButtonDisabled(true);
+    } else {
+      setSubmitButtonDisabled(false);
+    }
     setScore({
       ...score,
       [event.currentTarget.name]: event.currentTarget.value,
@@ -41,8 +46,9 @@ const QuizPage = (props) => {
   };
 
   const onAnswerSubmit = () => {
-    const answer = score.answer;
-    const correctAnswer = cards[score.cardId].answer;
+    const answer = score.answer.trim();
+    const correctAnswer = cards[score.cardId].answer.trim();
+
     if (correctAnswer.includes(answer) || answer.includes(correctAnswer)) {
       const currentScore = score.right + 1;
       setScore({ ...score, right: currentScore, wasRight: true });
@@ -91,11 +97,11 @@ const QuizPage = (props) => {
       }
     });
   }
-  
+
   let cardContent = (
     <div className="card fastcard-card clickable-card">
       <div className="card-section">
-        <h5>Would you like to begin?</h5>
+        <h5 className="padding-top-65">Would you like to begin?</h5>
         <button className="hollow button" onClick={() => setGameStarted(true)}>
           Start
         </button>
@@ -132,9 +138,9 @@ const QuizPage = (props) => {
       <div className="card fastcard-card clickable-card">
         <div className="card-section front">
           <h5>You completed the deck!</h5>
-          <h6>Right: {score.right}</h6>
-          <h6>Wrong: {score.wrong}</h6>
-          <h6>
+          <h6 className="text-green">Right: {score.right}</h6>
+          <h6 className="text-red">Wrong: {score.wrong}</h6>
+          <h6 className="text-blue">
             Final Score: {score.right}/{cards.length}
           </h6>
           {nextDeck}
@@ -156,7 +162,7 @@ const QuizPage = (props) => {
               placeholder="Answer here..."
             />
           </label>
-          <button className="hollow button" onClick={onAnswerSubmit}>
+          <button className="hollow button" onClick={onAnswerSubmit} disabled={submitButtonDisabled}>
             Submit Answer
           </button>
         </div>
@@ -172,7 +178,7 @@ const QuizPage = (props) => {
       <h1 className="text-center header-padding">Decks</h1>
       <div className="grid-container">
         <div className="grid-x grid-margin-x grid-margin-y align-center small-up-3 medium-up-4">
-          <div className="cell">
+          <div className="cell text-center">
             <p>
               Score: {score.right}/{cards.length}
             </p>

@@ -4,7 +4,6 @@ const CreateCardTile = ({ submitCard }) => {
   const [currentCard, setCurrentCard] = useState({
     question: "",
     answer: "",
-    clue: "",
     difficulty: "",
   });
 
@@ -21,7 +20,6 @@ const CreateCardTile = ({ submitCard }) => {
     setCurrentCard({
       question: "",
       answer: "",
-      clue: "",
       difficulty: "",
     });
   };

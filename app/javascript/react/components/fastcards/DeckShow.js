@@ -80,10 +80,12 @@ const DeckShow = (props) => {
       );
     });
   }
+
   let decks
   if(props.location.state != null){
     decks = props.location.state.decks
   }
+  
   return (
     <div>
       <div className="grid-x grid-padding-x grid-padding-y align-center">
