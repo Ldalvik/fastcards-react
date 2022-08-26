@@ -59,3 +59,25 @@ a:hover .clickable-card {
 .padding-top-90 {
     padding-top: 90px;
 }
+
+.flipped {
+    .front {
+        transform: rotateY(180deg);
+    }
+    .back {
+        transform: rotateY(0deg);
+    }
+}
+.front, .back {
+    backface-visibility: hidden;
+    transform-style: preserve-3d;
+    transition: -webkit-transform ease 500ms;
+    transition: transform ease 500ms;
+}
+.front {
+    z-index: 2;
+    transform: rotateY(0deg);
+}
+.back {
+    transform: rotateY(-180deg);
+}
