@@ -1,4 +1,5 @@
 import React, { useState, useEffect } from "react"
+import { Link } from "react-router-dom";
 
 const DeckIndex = (props) => {
   const [decks, setDecks] = useState([])
@@ -20,11 +21,13 @@ const DeckIndex = (props) => {
     getDecks()
   }, [])
 
-
   const decksList = decks.map((deck) => {
     return (
       <div key={deck.id} class="cell">
-        <a href={`/decks/${deck.id}`}>
+        <Link to = {{
+          pathname: `/decks/${deck.id}`,
+          state: {decks}
+       }}>
           <div class="card fastcard-deck clickable-deck">
             <div class="card-divider">
               <h4>{deck.name}</h4>
@@ -35,8 +38,8 @@ const DeckIndex = (props) => {
               <p>{deck.description}</p>
             </div>
           </div>
-        </a>
-      </div>
+          </Link>      
+        </div>
     );
   });
 

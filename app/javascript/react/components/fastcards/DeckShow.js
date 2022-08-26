@@ -1,5 +1,6 @@
 import React, { useState, useEffect } from "react";
 import CreateCardTile from "./CreateCardTile";
+import { Link } from "react-router-dom";
 
 const DeckShow = (props) => {
   const deckId = props.match.params.id;
@@ -79,7 +80,10 @@ const DeckShow = (props) => {
       );
     });
   }
-
+  let decks
+  if(props.location.state != null){
+    decks = props.location.state.decks
+  }
   return (
     <div>
       <div className="grid-x grid-padding-x grid-padding-y align-center">
@@ -88,9 +92,10 @@ const DeckShow = (props) => {
           <p>{deck.description}</p>
           <p>{deck.category}</p>
           <p>{deck.difficulty}</p>
-          <a className="button" href={`/decks/${deckId}/quiz`}>
-            Quiz Yourself!
-          </a>
+          <Link className="button" to = {{
+              pathname: `/decks/${deckId}/quiz`,
+              state: {decks}
+          }}>Quiz Yourself!</Link>
         </div>
       </div>
       <div className="grid-container">

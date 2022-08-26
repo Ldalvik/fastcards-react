@@ -28,6 +28,7 @@ const QuizPage = (props) => {
     }
   };
 
+  console.log(props.location.search.substring(10));
   useEffect(() => {
     getDeck();
   }, []);
@@ -40,7 +41,9 @@ const QuizPage = (props) => {
   };
 
   const onAnswerSubmit = () => {
-    if (cards[score.cardId].answer === score.answer) {
+    const answer = score.answer;
+    const correctAnswer = cards[score.cardId].answer;
+    if (correctAnswer.includes(answer) || answer.includes(correctAnswer)) {
       const currentScore = score.right + 1;
       setScore({ ...score, right: currentScore, wasRight: true });
     } else {
@@ -70,6 +73,25 @@ const QuizPage = (props) => {
     }
   };
 
+  let nextDeck = (
+    <a className="hollow button" href="/decks/">
+      Play new deck
+    </a>
+  );
+
+  if (props.location.state.decks != null) {
+    const nextId = parseInt(deckId) + 1;
+    props.location.state.decks.forEach((deck) => {
+      if (deck.id === nextId) {
+        nextDeck = (
+          <a className="hollow button" href={`/decks/${nextId}/`}>
+            Next Deck
+          </a>
+        );
+      }
+    });
+  }
+  
   let cardContent = (
     <div className="card fastcard-card clickable-card">
       <div className="card-section">
@@ -109,12 +131,13 @@ const QuizPage = (props) => {
     cardContent = (
       <div className="card fastcard-card clickable-card">
         <div className="card-section front">
-          <h5>
-            You completed the deck! Final score: {score.right}/{cards.length}
-          </h5>
-          <a className="hollow button" href={`/decks/${deckId + 1}/`}>
-            Next Deck
-          </a>
+          <h5>You completed the deck!</h5>
+          <h6>Right: {score.right}</h6>
+          <h6>Wrong: {score.wrong}</h6>
+          <h6>
+            Final Score: {score.right}/{cards.length}
+          </h6>
+          {nextDeck}
         </div>
       </div>
     );
@@ -153,7 +176,7 @@ const QuizPage = (props) => {
             <p>
               Score: {score.right}/{cards.length}
             </p>
-            <a>{cardContent}</a>
+            {cardContent}
           </div>
         </div>
       </div>
