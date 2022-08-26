@@ -12,6 +12,7 @@ Rails.application.routes.draw do
     end
   end
 
-  get "/decks",     to: "homes#index"
-  get "/decks/:id", to: "homes#index"
+  get "/decks",          to: "homes#index"
+  get "/decks/:id",      to: "homes#index"
+  get "/decks/:id/quiz", to: "homes#index"
 end
