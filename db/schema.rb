@@ -18,7 +18,6 @@ ActiveRecord::Schema.define(version: 2022_08_18_125500) do
   create_table "cards", force: :cascade do |t|
     t.text "question", null: false
     t.text "answer", null: false
-    t.text "clue", null: false
     t.text "difficulty", null: false
     t.bigint "deck_id", null: false
     t.datetime "created_at", null: false
