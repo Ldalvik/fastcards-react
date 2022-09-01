@@ -32,6 +32,11 @@ a:hover .clickable-card {
     transition: all .2s ease-in;
 }
 
+.fastcard-gamecard {
+    height:285px;
+    width:200px;
+}
+
 .header-padding {
     padding-top: 10px;
     padding-bottom: 20px;
@@ -85,3 +90,24 @@ a:hover .clickable-card {
 .back {
     transform: rotateY(-180deg);
 }
+
+.green-bg {
+    background: rgba(35, 214, 104, 0.457);
+}
+
+.red-bg {
+    background: rgba(222, 99, 51, 0.457);
+}
+
+.pulse {
+    animation: pulse-animation 2s infinite;
+  }
+  
+  @keyframes pulse-animation {
+    0% {
+      box-shadow: 0 0 0 0px rgba(0, 0, 0, 0.2);
+    }
+    100% {
+      box-shadow: 0 0 0 20px rgba(0, 0, 0, 0);
+    }
+  }

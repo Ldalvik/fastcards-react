@@ -8,6 +8,7 @@ Rails.application.routes.draw do
     namespace :v1 do
       resources :decks, only: [:index, :show] do 
         resources :cards, only: [:create, :new]
+        resources :games, only: [:create, :new]
       end
     end
   end
@@ -15,4 +16,5 @@ Rails.application.routes.draw do
   get "/decks",          to: "homes#index"
   get "/decks/:id",      to: "homes#index"
   get "/decks/:id/quiz", to: "homes#index"
+
 end

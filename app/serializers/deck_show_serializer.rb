@@ -4,4 +4,8 @@ class DeckShowSerializer < ActiveModel::Serializer
     has_many :cards do 
         object.cards.order(:updated_at).reverse
     end
+
+    has_many :games do 
+        object.games.order(:updated_at).reverse
+    end
 end

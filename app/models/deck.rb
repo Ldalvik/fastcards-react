@@ -5,4 +5,5 @@ class Deck < ApplicationRecord
     validates :difficulty,  presence: true
     
     has_many :cards
+    has_many :games
 end

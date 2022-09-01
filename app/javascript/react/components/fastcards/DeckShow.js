@@ -6,6 +6,7 @@ const DeckShow = (props) => {
   const deckId = props.match.params.id;
   const [deck, setDeck] = useState([]);
   const [cards, setCards] = useState([]);
+  const [games, setGames] = useState([]);
   const [selectedId, setSelectedId] = useState(null);
 
   const getDeck = async () => {
@@ -17,6 +18,7 @@ const DeckShow = (props) => {
       const deckData = await response.json();
       setDeck(deckData);
       setCards(deckData.cards);
+      setGames(deckData.games);
     } catch (error) {
       console.error(`Error in fetch: ${error.message}`);
     }
@@ -81,29 +83,61 @@ const DeckShow = (props) => {
     });
   }
 
-  let decks
-  if(props.location.state != null){
-    decks = props.location.state.decks
+  let decks;
+  if (props.location.state != null) {
+    decks = props.location.state.decks;
   }
-  
+
+  let gamesList;
+  gamesList = games.map((game) => {
+    const date = game.created_at.split('T')[0]
+    const time = game.created_at.split('T')[1]
+    return (
+      <div key={deck.id} className="cell">
+        <div className="card fastcard-gamecard clickable-gamecard">
+          <div className="card-divider">
+            <h5>GAME {game.id}</h5>
+          </div>
+          <div className="card-section front">
+            <p>Score: {parseInt(game.score).toFixed(2)}%</p>
+            <p>Right: {game.right}</p>
+            <p>Wrong: {game.wrong}</p>
+            <p>Quizzed at: {date}, {time}</p>
+          </div>
+        </div>
+      </div>
+    );
+  });
+
   return (
     <div>
       <div className="grid-x grid-padding-x grid-padding-y align-center">
         <div className="cell small-10">
           <h1>{deck.name}</h1>
-          <p>{deck.description}</p>
-          <p>{deck.category}</p>
-          <p>{deck.difficulty}</p>
-          <Link className="button" to = {{
+          <p><em>{deck.description}</em></p><br/>
+          <p><b>Category:</b> {deck.category}</p>
+          <p><b>Difficulty:</b> {deck.difficulty}</p>
+          <Link
+            className="button"
+            to={{
               pathname: `/decks/${deckId}/quiz`,
-              state: {decks}
-          }}>Quiz Yourself!</Link>
+              state: { decks },
+            }}
+          >
+            Quiz Yourself!
+          </Link>
         </div>
       </div>
       <div className="grid-container">
         <div className="grid-x grid-margin-x grid-margin-y small-up-3 medium-up-5">
           <CreateCardTile submitCard={submitCard} />
           {cardsList}
+        </div>
+      </div>
+      <div className="grid-container">
+      <h1 className="header-padding">Quiz History</h1>
+        <div className="grid-x grid-margin-x grid-margin-y small-up-4 medium-up-5">
+            {gamesList}
         </div>
       </div>
     </div>

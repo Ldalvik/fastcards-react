@@ -34,7 +34,7 @@ const DeckIndex = (props) => {
             </div>
             <div className="card-section">
               <h5>{deck.category}</h5>
-              <small>{deck.difficulty}</small><br/><br/>
+              <small>Difficulty: {deck.difficulty}</small><br/><br/>
               <p>{deck.description}</p>
             </div>
           </div>

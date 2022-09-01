@@ -16,6 +16,28 @@ const QuizPage = (props) => {
     isComplete: false,
   });
 
+  const uploadGameSession = async () =>{
+    const finalScore = (score.right / cards.length) * 100.0
+      try {
+        const response = await fetch(`/api/v1/decks/${deckId}/games`, {
+          credentials: "same-origin",
+          method: "POST",
+          headers: {
+            Accept: "application/json",
+            "Content-Type": "application/json",
+          },
+          body: JSON.stringify({
+            right: score.right,
+            wrong: score.wrong,
+            score: finalScore
+          }),
+        });
+      } catch (error) {
+        console.log("error in fetch:", error);
+      }
+    };
+
+
   const getDeck = async () => {
     try {
       const response = await fetch(`/api/v1/decks/${deckId}/`);
@@ -99,7 +121,7 @@ const QuizPage = (props) => {
   }
 
   let cardContent = (
-    <div className="card fastcard-card clickable-card">
+    <div className="card fastcard-deck clickable-deck">
       <div className="card-section">
         <h5 className="padding-top-65">Would you like to begin?</h5>
         <button className="hollow button" onClick={() => setGameStarted(true)}>
@@ -111,7 +133,7 @@ const QuizPage = (props) => {
 
   if (score.wasRight) {
     cardContent = (
-      <div className="card fastcard-card clickable-card">
+      <div className="card fastcard-deck clickable-deck pulse green-bg">
         <div className="card-section">
           <h5>You got it right! Click next to continue.</h5>
           <p>Answer: {cards[score.cardId].answer}</p>
@@ -123,7 +145,7 @@ const QuizPage = (props) => {
     );
   } else if (score.wasWrong) {
     cardContent = (
-      <div className="card fastcard-card clickable-card">
+      <div className="card fastcard-deck clickable-deck pulse red-bg">
         <div className="card-section">
           <h5>Sorry, that was incorrect. Click next to continue.</h5>
           <p>Answer: {cards[score.cardId].answer}</p>
@@ -134,14 +156,16 @@ const QuizPage = (props) => {
       </div>
     );
   } else if (score.isComplete) {
+    uploadGameSession()
+    const finalScore = (score.right/cards.length) * 100.0
     cardContent = (
-      <div className="card fastcard-card clickable-card">
+      <div className="card fastcard-deck clickable-deck pulse green-bg">
         <div className="card-section front">
           <h5>You completed the deck!</h5>
           <h6 className="text-green">Right: {score.right}</h6>
           <h6 className="text-red">Wrong: {score.wrong}</h6>
           <h6 className="text-blue">
-            Final Score: {score.right}/{cards.length}
+            Final Score: {score.right}/{cards.length} ({parseInt(finalScore).toFixed(2)}%)
           </h6>
           {nextDeck}
         </div>
@@ -149,7 +173,7 @@ const QuizPage = (props) => {
     );
   } else if (gameStarted && !score.isComplete) {
     cardContent = (
-      <div className="card fastcard-card clickable-card">
+      <div className="card fastcard-deck clickable-deck">
         <div className="card-section front">
           <small>Difficulty: {cards[score.cardId].difficulty}</small>
           <h4>{cards[score.cardId].question}</h4>
@@ -177,7 +201,7 @@ const QuizPage = (props) => {
     <div>
       <h1 className="text-center header-padding">Decks</h1>
       <div className="grid-container">
-        <div className="grid-x grid-margin-x grid-margin-y align-center small-up-3 medium-up-4">
+        <div className="grid-x grid-margin-x align-center small-up-4">
           <div className="cell text-center">
             <p>
               Score: {score.right}/{cards.length}

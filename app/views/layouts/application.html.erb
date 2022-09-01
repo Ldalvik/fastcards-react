@@ -12,19 +12,27 @@
     <div class="top-bar-left">
       <ul class="menu">
         <li class="menu-text header-text">Fastcards</li>
-        <% if request.fullpath === "/about" %>
-          <li><a class="clear button white" href="/">Home</a></li>
-          <li><a class="clear button white" href="/contact">Contact</a></li>
-        <% elsif request.fullpath == "/contact" %>
-          <li><a class="clear button white" href="/">Home</a></li>
-          <li><a class="clear button white" href="/about">About</a></li>
-        <% elsif request.fullpath == "/" %>
+        <% if request.fullpath === "/" %>
           <li><a class="clear button white" href="/about">About</a></li>
           <li><a class="clear button white" href="/contact">Contact</a></li>
-        <% else %>
+          <li><a class="clear button white" href="/decks">View Decks</a></li>
+        <% elsif request.fullpath === "/about" %>
+          <li><a class="clear button white" href="/">Home</a></li>
+          <li><a class="clear button white" href="/contact">Contact</a></li>
+          <li><a class="clear button white" href="/decks">View Decks</a></li>     
+        <% elsif request.fullpath === "/contact" %>
           <li><a class="clear button white" href="/">Home</a></li>
           <li><a class="clear button white" href="/about">About</a></li>
-          <li><a class="clear button white" href="/contact">Contact</a></li>        
+          <li><a class="clear button white" href="/decks">View Decks</a></li>     
+        <% elsif request.fullpath === "/decks" %>
+          <li><a class="clear button white" href="/">Home</a></li>
+          <li><a class="clear button white" href="/about">About</a></li>
+          <li><a class="clear button white" href="/contact">Contact</a></li>
+        <% elsif request.fullpath != "/decks" %>
+          <li><a class="clear button white" href="/">Home</a></li>
+          <li><a class="clear button white" href="/about">About</a></li>
+          <li><a class="clear button white" href="/contact">Contact</a></li>   
+          <li><a class="clear button white" href="/decks">View Decks</a></li>     
         <% end %>
       </ul>
     </div>
@@ -57,6 +65,6 @@
   <%- end -%>
   <%= javascript_pack_tag 'application' %>
   
-  <%= yield :extra_footer %>
+  <%= yield :extra_footer %> 
 </body>
 </html>
